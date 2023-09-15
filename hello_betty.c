@@ -8,8 +8,8 @@
  */
 int main(void)
 {
-	char *message = "Hello, Betty!"
+	char *message = "Hello, Betty!"\n;
 
-		printf("%s\n", message);
+	write(STDOUT_FILENO, message, strlen(message));
 	return (0);
 }
