@@ -14,5 +14,6 @@ void generate_prompt(void);
 char *user_input_data();
 int _strlen(char *s);
 void remove_newline_char(char *str);
+void execute_commands(char *user_input_data);
 
 #endif /* SIMPLE_SHELL_H*/

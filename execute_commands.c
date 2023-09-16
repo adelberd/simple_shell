@@ -8,11 +8,11 @@
 
 void execute_commands(char *user_input_data)
 {
+	pid_t child_pid;
+
 	/* Delete the last newline character and equate it to null terminator */
 	remove_newline_char(user_input_data);
-
-	/* Create a new child shell process */
-	pid_t child_pid = fork();
+	child_pid = fork(); /* Create a new child shell process */
 
 	if (child_pid == -1)
 	{

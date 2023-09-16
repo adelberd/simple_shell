@@ -8,12 +8,12 @@
 
 int main(void)
 {
+	char *user_input;
+
 	while (1)
 	{
 		generate_prompt();
-
-		char *user_input = user_input_data();
-
+		user_input = user_input_data();
 		execute_commands(user_input);
 
 		/* Free and cleanup memory leaks */

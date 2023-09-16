@@ -1,15 +1,14 @@
-#include <stdio.h>
-#include <stdlib.h>
+#include "simple_shell.h"
 
 /**
- * main - 'write a beatiful code that passes Betty checks'
+ * hello_betty - 'write a beatiful code that passes Betty checks'
  *
  * Return: Always 0
  */
-int main(void)
+int hello_betty(void)
 {
-	char *message = "Hello, Betty!"\n;
+	char *message = "Hello, Betty!\n";
 
-	write(STDOUT_FILENO, message, strlen(message));
+	write(STDOUT_FILENO, message, _strlen(message));
 	return (0);
 }
