@@ -8,8 +8,8 @@
 
 void execute_commands(char *user_input_data)
 {
-	/* Delete the last newline character */
-	user_input_data[strcspn(user_input_data, "\n")] = '\0';
+	/* Delete the last newline character and equate it to null terminator */
+	remove_newline_char(user_input_data);
 
 	/* Create a new child shell process */
 	pid_t child_pid = fork();

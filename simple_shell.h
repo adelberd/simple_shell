@@ -5,9 +5,14 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+
 
 /* function prototypes here*/
 void generate_prompt();
 char *user_input_data();
+int _strlen(char *s);
+void remove_newline_char(char *str);
 
 #endif /* SIMPLE_SHELL_H*/
