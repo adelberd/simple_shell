@@ -10,7 +10,7 @@
 void remove_newline_char(char *str)
 {
 	size_t length = _strlen(str);
-	
+
 	if (length > 0 && (str[length - 1] == '\n'))
 		str[length - 1] = '\0';
 }

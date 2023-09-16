@@ -10,7 +10,7 @@
 
 
 /* function prototypes here*/
-void generate_prompt();
+void generate_prompt(void);
 char *user_input_data();
 int _strlen(char *s);
 void remove_newline_char(char *str);
