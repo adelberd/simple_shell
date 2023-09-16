@@ -37,7 +37,7 @@ void execute_commands(char *user_input_data)
 
 		/* Execute the command */
 		execve(args[0], args, NULL);
-		
+
 		perror("No such command found");
 		exit(EXIT_FAILURE);
 
@@ -45,6 +45,7 @@ void execute_commands(char *user_input_data)
 	{
 		/* Wait for the child process to finish */
 		int status;
+
 		waitpid(child_pid, &status, 0);
 	}
 }

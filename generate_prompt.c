@@ -5,8 +5,9 @@
 *
 */
 
-void generate_prompt()
+void generate_prompt(void)
 {
-  char shell_prompt[] = "alxShell$ ";
-  write(STDOUT_FILENO, shell_prompt, sizeof(shell_prompt) - 1);
+	char shell_prompt[] = "alxShell$ ";
+
+	write(STDOUT_FILENO, shell_prompt, sizeof(shell_prompt) - 1);
 }
