@@ -8,11 +8,11 @@
 
 void execute_commands(char *user_input_data)
 {
-	/* Delete the last newline character */
-	user_input_data[strcspn(user_input_data, "\n")] = '\0';
+	pid_t child_pid;
 
-	/* Create a new child shell process */
-	pid_t child_pid = fork();
+	/* Delete the last newline character and equate it to null terminator */
+	remove_newline_char(user_input_data);
+	child_pid = fork(); /* Create a new child shell process */
 
 	if (child_pid == -1)
 	{
@@ -37,7 +37,7 @@ void execute_commands(char *user_input_data)
 
 		/* Execute the command */
 		execve(args[0], args, NULL);
-		
+
 		perror("No such command found");
 		exit(EXIT_FAILURE);
 
@@ -45,6 +45,7 @@ void execute_commands(char *user_input_data)
 	{
 		/* Wait for the child process to finish */
 		int status;
+
 		waitpid(child_pid, &status, 0);
 	}
 }

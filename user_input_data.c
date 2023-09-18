@@ -18,5 +18,5 @@ char *user_input_data()
 		perror("Error, cannot read from stdin");
 		exit(EXIT_FAILURE);
 	}
-	return data_input;
+	return (data_input);
 }
