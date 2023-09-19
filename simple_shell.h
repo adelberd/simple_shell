@@ -15,5 +15,6 @@ char *user_input_data();
 int _strlen(char *s);
 void remove_newline_char(char *str);
 void execute_commands(char *user_input_data);
+void execute_command(char *command, char *path[])
 
 #endif /* SIMPLE_SHELL_H*/
