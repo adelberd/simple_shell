@@ -1,4 +1,5 @@
 #include "simple_shell.h"
+#include <unistd.h>
 
 void execute_command(char *command, char *path[])
 {
