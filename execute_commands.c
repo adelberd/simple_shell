@@ -2,50 +2,29 @@
 
 /**
 * execute_commands - execute user commands from the stdin.
-*
-* @user_input_data: the user command to process and excute.
+* @program_name: the name of the program
+* @user_input: the user command to process and excute.
+* @path: environment variable PATH.
 */
 
-void execute_commands(char *user_input_data)
+void execute_commands(char *user_input, char *path, char *program_name)
 {
-	pid_t child_pid;
+	char *args[128];
+	char *executable = NULL;
 
-	/* Delete the last newline character and equate it to null terminator */
-	remove_newline_char(user_input_data);
-	child_pid = fork(); /* Create a new child shell process */
+	remove_newline_char(user_input);
+	exit_shell(user_input);
 
-	if (child_pid == -1)
+	/* Tokenize the user input into arguments */
+	tokenize_input(user_input, args);
+
+	/* Search for executable in the PATH */
+	find_executable_in_path(path, args[0], &executable);
+
+	if (executable)
 	{
-		perror("A new child process cannot be created {fork()}");
-		exit(EXIT_FAILURE);
-	}
-
-	if (child_pid == 0)
-	{
-		char *shell_command = strtok(user_input_data, " ");
-		char *args[128];
-		int i;
-
-		i = 0;
-		while (shell_command != NULL)
-		{
-			args[i++] = shell_command;
-			shell_command = strtok(NULL, " ");
-		}
-
-		args[i] = NULL;
-
-		/* Execute the command */
-		execve(args[0], args, NULL);
-
-		perror("No such command found");
-		exit(EXIT_FAILURE);
-
+		execute_executable(args, executable);
+		/* free(executable); */
 	} else
-	{
-		/* Wait for the child process to finish */
-		int status;
-
-		waitpid(child_pid, &status, 0);
-	}
+		handle_command_not_found(program_name, args[0]);
 }

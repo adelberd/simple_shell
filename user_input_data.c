@@ -15,8 +15,17 @@ char *user_input_data()
 
 	if (characters == -1)
 	{
-		perror("Error, cannot read from stdin");
-		exit(EXIT_FAILURE);
+		if (feof(stdin))
+		{
+			/* EOF (Ctrl+D) event encoutered */
+			free(data_input);
+			write(STDOUT_FILENO, "\n", 1);
+			exit(EXIT_SUCCESS);
+		} else
+		{
+			perror("Error, cannot read from stdin");
+			exit(EXIT_FAILURE);
+		}
 	}
 	return (data_input);
 }
